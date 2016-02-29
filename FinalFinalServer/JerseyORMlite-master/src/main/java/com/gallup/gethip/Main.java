@@ -60,9 +60,11 @@ public class Main {
 
     public static final URI BASE_URI = getBaseURI();
     
+    @SuppressWarnings("unchecked")
     protected static HttpServer startServer() throws IOException {
         ResourceConfig resourceConfig = new PackagesResourceConfig("com.gallup.gethip.resources");
-
+        resourceConfig.getContainerResponseFilters().add("com.gallup.gethip.CorsResponseFilter"); 
+        
         System.out.println("Starting grizzly2...");
         return GrizzlyServerFactory.createHttpServer(BASE_URI, resourceConfig);
     }
