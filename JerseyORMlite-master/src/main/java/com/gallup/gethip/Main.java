@@ -24,12 +24,22 @@ import java.sql.SQLException;
 public class Main {
 	
 	private static void createDatabaseConnection(){
-		String databaseUrl = "jdbc:mysql://nussrallahdatabase.crhd1ju3i1wn.us-west-2.rds.amazonaws.com";
+		/*String databaseUrl = "jdbc:mysql://nussrallahdatabase.crhd1ju3i1wn.us-west-2.rds.amazonaws.com:3306";
 		ConnectionSource connectionSource;
 		try {
 			connectionSource = new JdbcConnectionSource(databaseUrl);
 			((JdbcConnectionSource)connectionSource).setUsername("snuss967");
 			((JdbcConnectionSource)connectionSource).setPassword("S!llyBadger2014");
+			DataSourceManager.setConnectionSource(connectionSource);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}*/
+		String databaseUrl = "jdbc:mysql://54.148.117.243:3306/irs";
+		ConnectionSource connectionSource;
+		try {
+			connectionSource = new JdbcConnectionSource(databaseUrl);
+			((JdbcConnectionSource)connectionSource).setUsername("ben");
+			((JdbcConnectionSource)connectionSource).setPassword("password");
 			DataSourceManager.setConnectionSource(connectionSource);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -31,14 +31,14 @@ public class RecycleResource {
 	@GET 
     // The Java method will produce content identified by the MIME Media
     // type "application/json"
-    @Path("/{userName}/{StartDate}/{EndDate}")
+    @Path("/{userName}/{StartDate}/{EndDate}/{authorizationCode}")
     @Produces("application/json")
     @Consumes("application/json")
 	//@PathParam userName the identifier by which we are attempting to retrieve the data
     //@PathParam StartDate the StartDate of the cycle of the records we are retrieving
     //@PathParam EndDate the EndDate of the cycle of the records we are retrieving
     //@Param authorizationCode the authorizationCode that permits access to the data
-    public List<recycle_records> getIt(@PathParam("userName") String userName, @PathParam("StartDate") String StartDate, @PathParam("EndDate") String EndDate, String authorizationCode) {
+    public List<recycle_records> getIt(@PathParam("userName") String userName, @PathParam("StartDate") String StartDate, @PathParam("EndDate") String EndDate, @PathParam("authorizationCode") String authorizationCode) {
     	boolean authenticate = authentication.authenticate(userName, authorizationCode);
     	List<recycle_records> trashList = new ArrayList<recycle_records>();
     	if(authenticate)

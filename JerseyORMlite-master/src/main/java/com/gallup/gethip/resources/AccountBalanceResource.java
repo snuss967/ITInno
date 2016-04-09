@@ -22,9 +22,9 @@ public class AccountBalanceResource {
 	
 	@GET
 	@Produces("application/json")
-	@Path("/{UserName}")
+	@Path("/{UserName}/{authorizationCode}")
 	//@PathParam UserName the username by which the user is trying to access
-	public account_balances getBalance(@PathParam("UserName")String UserName, String authenticationCode)
+	public account_balances getBalance(@PathParam("UserName") String UserName, @PathParam("authenticationCode") String authenticationCode)
 	{
 		boolean authenticated = authentication.authenticate(UserName, authenticationCode);
 		if(authenticated)

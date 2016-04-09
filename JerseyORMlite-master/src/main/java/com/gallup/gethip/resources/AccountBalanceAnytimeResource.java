@@ -36,10 +36,10 @@ public class AccountBalanceAnytimeResource {
     //@Param authorizationCode the authorizationCode that permits access to the data
     
     //TODO go through the method and suit to our functionality it will operate much like the Trash or Recycle Resources
-    @Path("/{userName}/{StartDate}/{EndDate}")
+    @Path("/{userName}/{StartDate}/{EndDate}/{authorizationCode}")
     @Produces("application/json")
     @Consumes("application/json")
-    public List<account_balances> getIt(@PathParam("userName") String userName, @PathParam("StartDate") String StartDate, @PathParam("EndDate") String EndDate, String authorizationCode) {
+    public List<account_balances> getIt(@PathParam("userName") String userName, @PathParam("StartDate") String StartDate, @PathParam("EndDate") String EndDate, @PathParam("authorizationCode") String authorizationCode) {
     	boolean authenticate = authentication.authenticate(userName, authorizationCode);
     	//authenticate the user making sure that they have the right authorization code and UserName
     	List<account_balances> trashList = new ArrayList<account_balances>();

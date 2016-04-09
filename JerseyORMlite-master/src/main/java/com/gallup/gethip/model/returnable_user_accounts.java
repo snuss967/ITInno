@@ -11,15 +11,19 @@ public class returnable_user_accounts {
 		this.PhoneNumber = PhoneNumber;
 		
 	}
-	String UserName;
-	String Address;
-	int Zip;
-	int PhoneNumber;
-	String City;
-	String State;
+	private String UserName;
+	private String Address;
+	private int Zip;
+	private int PhoneNumber;
+	private String City;
+	private String State;
 	
 	public String getUserName() {
 		return UserName;
+	}
+	
+	public void setUserName(String UserName) {
+		System.out.println("Username can't be changed");
 	}
 	//UserName is unable to be changed
 	public String getAddress() {

@@ -32,8 +32,8 @@ public class calendarTrashResource {
 	 //@PathParam UserName the UserName of the account that is trying to be accessed
 	 //@PathParam MMYYYY the month and the year that we will retrieve all of the collection data for
 	 //@Param authorizationCode String consumed that will permit the user to access 
-	 @Path("/{UserName}/{MMYYYY}")
-	    public List<trash_records> getIt(@PathParam("UserName") String UserName, @PathParam("MMYYYY")String MMYYYY, String authorizationCode) {
+	 @Path("/{UserName}/{MMYYYY}/{authorizationCode}")
+	    public List<trash_records> getIt(@PathParam("UserName") String UserName, @PathParam("MMYYYY")String MMYYYY, @PathParam("authorizationCode") String authorizationCode) {
 	    	boolean authenticated = authentication.authenticate(UserName, authorizationCode);
 	    	if(authenticated)
 	    	{

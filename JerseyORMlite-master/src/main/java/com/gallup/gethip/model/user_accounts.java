@@ -6,10 +6,21 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @XmlRootElement
-@DatabaseTable(tableName="user_accounts")
+@DatabaseTable(tableName="user_accounts")	
 public class user_accounts {
 	
-	@DatabaseField(columnName = "UserName")
+	/*@Override
+	public String toString() {
+		return "user_accounts [id=" + id + ", UserName=" + UserName + ", Password=" + Password + ", Address=" + Address
+				+ ", Salt=" + Salt + ", RFIDNumber=" + RFIDNumber + ", Zip=" + Zip + ", City=" + City + ", State="
+				+ State + ", PhoneNumber=" + PhoneNumber + ", AuthorizationCode=" + AuthorizationCode + "]";
+	}*/
+
+	/*@DatabaseField(id = true, columnName = "id")
+	private String id;
+	*/
+	
+	@DatabaseField(id = true, columnName = "UserName")
 	private String UserName;
 	
 	@DatabaseField(columnName = "Password")
@@ -45,10 +56,20 @@ public class user_accounts {
 	public user_accounts(){
 		
 	}
+	
+	/*
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	*/
 
 	public String getUserName() {
 		return UserName;
-	}
+	}		
 
 	public void setUserName(String UserName) {
 		this.UserName = UserName;

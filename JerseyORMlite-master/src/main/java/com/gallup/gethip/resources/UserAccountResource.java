@@ -1,4 +1,4 @@
-
+	
 package com.gallup.gethip.resources;
 
 import java.sql.SQLException;
@@ -37,8 +37,9 @@ public class UserAccountResource {
     //@Param UserName is the username of the account that we are trying to access
     //Method will return the details that the user should be able to access
     //need to make sure that the user is unable to access the UserName parameter on the client
-    @Path("/{UserName}")
-    public returnable_user_accounts getIt(@PathParam("UserName") String UserName, String authenticationCode) {
+    @Path("/{UserName}/{authorizationCode}")
+    //public returnable_user_accounts getIt(@PathParam("UserName") String UserName, @PathParam("authorizationCode") String authenticationCode) {
+    public user_accounts getIt(@PathParam("UserName") String UserName, @PathParam("authorizationCode") String authenticationCode) {
     	user_accounts emp = null;
     	//creates an empty user account reference
     	boolean authorized = authentication.authenticate(UserName, authenticationCode);
@@ -52,8 +53,11 @@ public class UserAccountResource {
 			if(emp == null){
 				return null;
 			}else{
-				returnable_user_accounts rua = new returnable_user_accounts(emp.getUserName(), emp.getAddress(), emp.getZip(), emp.getCity(), emp.getState(), emp.getPhoneNumber());
-				return rua;
+				//Using rua returns an error saying "Message body writer was not found"
+				//Simply returning ua for now
+				//returnable_user_accounts rua = new returnable_user_accounts(emp.getUserName(), emp.getAddress(), emp.getZip(), emp.getCity(), emp.getState(), emp.getPhoneNumber());
+				//return rua;
+				return emp;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,12 +73,29 @@ public class UserAccountResource {
     // TODO @Param user_accounts is the user_account with all of its information we need to update this to take in only the 
     //the information that is inserted through the form
     @Produces("application/json")
-    @Consumes("application/json")
-    public user_accounts createuser_accounts(user_accounts ua){
+    //@Consumes("application/json")
+    @Path("/{UserName}/{Password}/{Address}/{Salt}/{RFIDNumber}/{Zip}/{City}/{State}/{PhoneNumber}")
+    //public user_accounts createuser_accounts(user_accounts ua){
+    public user_accounts createuse_accounts(@PathParam("UserName") String UserName, @PathParam("Password") String Password, @PathParam("Address") String Address, @PathParam("Salt") String Salt, @PathParam("RFIDNumber") int RFIDNumber, @PathParam("Zip") int Zip, @PathParam("State") String State, @PathParam("PhoneNumber") int PhoneNumber, @PathParam("City") String City) {
     	try {
+    		user_accounts ua = new user_accounts();
     		//takes the information the client passed in and creates a new account
     		//generates the authentication code and sets it
-    		ua.setAuthorizationCode(generateAuthenticationCode.generateString(45));
+    		ua.setAuthorizationCode(generateAuthenticationCode.generateString());
+    		//ua.setId(id);
+    		ua.setUserName(UserName);
+    		ua.setPassword(Password);
+    		ua.setAddress(Address);
+    		ua.setSalt(Salt);
+    		ua.setRFIDNumber(RFIDNumber);
+    		ua.setZip(Zip);
+    		ua.setCity(City);
+    		ua.setState(State);
+    		ua.setPhoneNumber(PhoneNumber);
+    		
+    		System.out.println(ua.getCity());
+    		//ua.setCity("Lincoln");
+    		System.out.println(ua.toString());
 			user_accounts empPrime = getDao().createIfNotExists(ua);
 			if(empPrime == null){
 				//maybe put in code later to see if ua is populated

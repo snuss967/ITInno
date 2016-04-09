@@ -18,7 +18,7 @@ public class pick_up_days {
 	private int day;
 	
 	@DatabaseField(columnName = "pickedUp")
-	private short pickedUp;
+	private int pickedUp;
 	
 	@DatabaseField(columnName = "AssignedPickUpDay")
 	private Date AssignedPickUpDay;
@@ -46,12 +46,12 @@ public class pick_up_days {
 		this.day = day;
 	}
 	
-	public short getpickedUp() {
+	public int getpickedUp() {
 		return pickedUp;
 		
 	}
 
-	public void setpickedUp(short pickedUp) {
+	public void setpickedUp(int pickedUp) {
 		this.pickedUp = pickedUp;
 	}
 

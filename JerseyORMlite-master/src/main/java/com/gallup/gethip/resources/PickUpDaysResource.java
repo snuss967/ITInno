@@ -40,8 +40,8 @@ public class PickUpDaysResource {
 	//@Param AuthenticationCode the code that is stored in cookie on login used to get access to the UsersInformation proves they loggedin 
     @Produces("application/json")
     @Consumes("application/json")
-    @Path("/{UserName}")
-    public pick_up_days getIt(@PathParam("UserName") String UserName, String AuthenticationCode) {
+    @Path("/{UserName}/{AuthenticationCode}")
+    public pick_up_days getIt(@PathParam("UserName") String UserName, @PathParam("AuthenticationCode")String AuthenticationCode) {
     	startDate.setDate(13);
     	startDate.setHours(0);
     	startDate.setMinutes(0);

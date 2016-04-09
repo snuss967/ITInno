@@ -32,8 +32,8 @@ public class calendarRecycleResource {
   	 //@Param authorizationCode String consumed that will permit the user to access 
     @Produces("application/json")
     @Consumes("application/json")
-    @Path("/{UserName}/{MMYYYY}")
-    public List<recycle_records> getIt(@PathParam("UserName") String UserName, @PathParam("MMYYYY")String MMYYYY, String authorizationCode) {
+    @Path("/{UserName}/{MMYYYY}/{authorizationCode}")
+    public List<recycle_records> getIt(@PathParam("UserName") String UserName, @PathParam("MMYYYY")String MMYYYY, @PathParam("authorizationCode") String authorizationCode) {
     	boolean authenticated = authentication.authenticate(UserName, authorizationCode);
     	if(authenticated)
     	{

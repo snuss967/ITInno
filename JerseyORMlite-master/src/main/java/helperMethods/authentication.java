@@ -18,13 +18,19 @@ public class authentication {
 			//gets the username account
 			user_accounts ua = getDao().queryForId(userName);
 			//gets the authorization code out of the user account
+			System.out.println(ua.getUserName());
 			String authCode = ua.getAuthorizationCode();
-			if(authCode == authenticationCode)
+			System.out.println(authenticationCode + " " + authCode);
+			if(authCode.equals(authenticationCode)) {
 				//if authorization code passes the authentication code we passed in returns true
 				status = true;
-			else
+				System.out.println("equals");
+			} else {
 				status = false;
-			//if it fails we return false
+				System.out.println("not equals");
+				
+				//if it fails we return false
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,12 +49,22 @@ public class authentication {
 	{
 		user_accounts ua;
 		//user account object reference
-		boolean authenticate;
+		boolean authenticate = false;
 		//authenticate reference
 		try {
+			System.out.println("username: " + userName);
+			System.out.println("password: " + password);
 			ua = getDao().queryForId(userName);
+			String uaPassword = ua.getPassword();
+			System.out.println(uaPassword + " " + password);
+			if(uaPassword.equals(password)) {
+				System.out.println("equal");
+				authenticate = true;
+			} else {
+				System.out.println(uaPassword + "\n" + password);
+			}
 			//gets the account that is the UserName
-			String Salt = ua.getSalt();
+			/*String Salt = ua.getSalt();
 			//gets the salt we used on that password
 			password += Salt;
 			//appends the salt to the password
@@ -72,10 +88,12 @@ public class authentication {
 	        else
 	        	authenticate = false;
 	        	//if they dont match then return false
+			*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			authenticate = false;
+			System.out.print("catch is running");
 		}
 		return authenticate;
 		
