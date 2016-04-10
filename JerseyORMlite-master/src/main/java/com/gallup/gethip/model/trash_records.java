@@ -35,7 +35,16 @@ public class trash_records {
 	public trash_records(){
 		
 	}
-
+	public trash_records(int RFIDNumber, String UserName, double Weight, Date PickedUp, int TruckNumber, int Date, int ID )
+	{
+		this.ID = ID;
+		this.RFIDNumber = RFIDNumber;
+		this.UserName = UserName;
+		this.Weight = Weight;
+		this.PickedUp = PickedUp;
+		this.TruckNumber = TruckNumber;
+		this.Date = Date;
+	}
 	public int getID() {
 		return ID;
 	}

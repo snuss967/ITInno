@@ -12,9 +12,11 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import com.gallup.gethip.DataSourceManager;
 import com.gallup.gethip.model.trash_records;
+import com.gallup.gethip.model.trashpickup_type;
 import com.j256.ormlite.dao.Dao;
 
 import helperMethods.authentication;
@@ -132,16 +134,86 @@ public class TrashResource {
     
     @POST
     @Produces("application/json")
-    @Consumes("application/json")
+    @Consumes(MediaType.APPLICATION_JSON)
     //@Param recycleList a list of all of the data that we have collected
-    public trash_records createtrash_records(List<trash_records> trashList){
+    public String createtrash_records(trashpickup_type trashList[]){
+    	System.out.println("Im Here Guys!!!!");
     	// TODO update this to take the information we pass through to it and create individual objects based on it. 
     	// TODO modify to return success code
     	billing billSystem = billing.getInstance();
     	systemTotalsTrash sysTotalsTrashSystem = systemTotalsTrash.getInstance();
-    	for(trash_records rec : trashList)
-    	{
-    		try {
+    	int i = 1;
+    	Date timeNow = new Date();
+    	trash_records tr = new trash_records(2329144,"ben1", 55.5,timeNow,1,04102016,2);
+    	timeNow.setMinutes(36);
+    	trash_records tr1 = new trash_records(2329144,"ben1",52.35,timeNow,1,04102016,3);
+    	timeNow.setMinutes(37);
+    	trash_records tr2 = new trash_records(2329144,"ben1",54.25,timeNow,1,04102016,4);
+    	timeNow.setMinutes(38);
+    	trash_records tr3 = new trash_records(5099093,"Benjamin",45.2,timeNow,1,04102016,5);
+    	timeNow.setMinutes(39);
+    	trash_records tr4 = new trash_records(5099093,"Benjamin",78.63,timeNow,1,04102016,6);
+    	timeNow.setMinutes(40);
+    	trash_records tr5 = new trash_records(5099093,"Benjamin",45.36,timeNow,1,04102016,7);
+    	timeNow.setMinutes(41);
+    	trash_records tr6 = new trash_records(1026046,"ben2",56.47,timeNow,1,04102016,8);
+    	timeNow.setMinutes(42);
+    	trash_records tr7 = new trash_records(1026046,"ben2",45.54,timeNow,1,04102016,9);
+    	timeNow.setMinutes(43);
+    	trash_records tr8 = new trash_records(1026046,"ben2",47.26,timeNow,1,04102016,10);
+    	timeNow.setMinutes(44);
+    	trash_records tr9 = new trash_records(2412801,"ben3",45.254,timeNow,1,04102016,11);
+    	timeNow.setMinutes(45);
+    	trash_records tr10 = new trash_records(2412801,"ben3",49.36,timeNow,1,04102016,12);
+    	timeNow.setMinutes(46);
+    	trash_records tr11 = new trash_records(2412801,"ben3",52.36,timeNow,1,04102016,13);
+    	timeNow.setMinutes(47);
+    	trash_records tr12 = new trash_records(2454861,"ben4",12.12,timeNow,1,04102016,14);
+    	timeNow.setMinutes(48);
+    	trash_records tr13 = new trash_records(2454861,"ben4",8.36,timeNow,1,04102016,15);
+    	timeNow.setMinutes(49);
+    	trash_records tr14 = new trash_records(2431895,"ben5",2.36,timeNow,1,04102016,16);
+    	timeNow.setMinutes(50);
+    	trash_records tr15 = new trash_records(2431895,"ben5",45.36,timeNow,1,04102016,17);
+    	timeNow.setMinutes(51);
+    	trash_records tr16 = new trash_records(2431895,"ben5",45.36,timeNow,1,04102016,18);
+    	timeNow.setMinutes(52);
+    	trash_records tr17 = new trash_records(2423366,"ben6",74.35,timeNow,1,04102016,19);
+    	timeNow.setMinutes(53);
+    	trash_records tr18 = new trash_records(2423366,"ben6",48.31,timeNow,1,04102016,20);
+    	timeNow.setMinutes(54);
+    	trash_records tr19 = new trash_records(2423366,"ben6",66.21,timeNow,1,04102016,21);
+    	
+    	try {
+			getDao().createIfNotExists(tr);
+			getDao().createIfNotExists(tr1);
+	    	getDao().createIfNotExists(tr2);
+	    	getDao().createIfNotExists(tr3);
+	    	getDao().createIfNotExists(tr4);
+	    	getDao().createIfNotExists(tr5);
+	    	getDao().createIfNotExists(tr6);
+	    	getDao().createIfNotExists(tr7);
+	    	getDao().createIfNotExists(tr8);
+	    	getDao().createIfNotExists(tr9);
+	    	getDao().createIfNotExists(tr10);
+	    	getDao().createIfNotExists(tr11);
+	    	getDao().createIfNotExists(tr12);
+	    	getDao().createIfNotExists(tr13);
+	    	getDao().createIfNotExists(tr14);
+	    	getDao().createIfNotExists(tr15);
+	    	getDao().createIfNotExists(tr16);
+	    	getDao().createIfNotExists(tr17);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
+    	
+    	//for(trashpickup_type alpha : trashList)
+    	//{	
+    		//System.out.println(alpha.getRFIDCode() + alpha.getWeight());
+    		//i++;
+    		/*try {
     			billSystem.updateBillingRecord(rec.getUserName(), 0, rec.getWeight());
     			sysTotalsTrashSystem.updateSystemTotals(rec.getWeight());
 				getDao().createIfNotExists(rec);
@@ -149,8 +221,9 @@ public class TrashResource {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-    	}
-    	return null;
+			*/
+    	//}
+    	return "It worked";
     }
     
 	private static Dao<trash_records, String> getDao(){
