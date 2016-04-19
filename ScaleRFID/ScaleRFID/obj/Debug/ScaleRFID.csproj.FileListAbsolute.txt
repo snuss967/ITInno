@@ -1,0 +1,13 @@
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\ScaleRFID.exe.config
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\ScaleRFID.exe
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\ScaleRFID.pdb
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.csprojResolveAssemblyReference.cache
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.Form1.resources
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.Properties.Resources.resources
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.csproj.GenerateResource.Cache
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.exe
+c:\users\spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.pdb
+C:\Users\Spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\LibUsbDotNet.dll
+C:\Users\Spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\RestSharp.dll
+C:\Users\Spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\bin\Debug\RestSharp.xml
+C:\Users\Spencer\documents\visual studio 2015\Projects\ScaleRFID\ScaleRFID\obj\Debug\ScaleRFID.Launcher.resources
