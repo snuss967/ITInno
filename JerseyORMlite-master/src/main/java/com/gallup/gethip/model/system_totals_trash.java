@@ -11,7 +11,7 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName="system_totals")
 public class system_totals_trash {
 	
-	@DatabaseField(generatedId = true, columnName = "ID")
+	@DatabaseField(columnName = "ID", id=true)
 	private int ID;
 	
 	@DatabaseField(columnName = "Day")

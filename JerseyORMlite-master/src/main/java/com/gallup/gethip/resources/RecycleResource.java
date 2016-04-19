@@ -118,24 +118,32 @@ public class RecycleResource {
     }
     
     @POST
+    @Path("/{RFID}/{WEIGHT}/{USERNAME}")
     @Produces("application/json")
     @Consumes("application/json")
     //@Param recycleList a list of all of the data that we have collected
-    public recycle_records createrecycle_records(List<recycle_records> recycleList){
+    public recycle_records createrecycle_records(@PathParam("RFID") String RFID, @PathParam("WEIGHT") String WEIGHT, @PathParam("USERNAME") String UserName){
     	// TODO update this to take the information we pass through to it and create individual objects based on it. 
     	// TODO modify to return success code
+    	double weight = Double.parseDouble(WEIGHT);
     	billing billSystem = billing.getInstance();
+    	recycle_records rec = new recycle_records();
+    	Date date = new Date();
+    	int RFIDNum = Integer.parseInt(RFID);
+    	rec.setDate(4182016);
+    	rec.setPickedUp(date);
+    	rec.setRFIDNumber(RFIDNum);
+    	rec.setTruckNumber(0);
+    	rec.setUserName(UserName);
+    	rec.setWeight(weight);
     	systemTotalsTrash sysTotalsTrashSystem = systemTotalsTrash.getInstance();
-    	for(recycle_records rec : recycleList)
-    	{
     		try {
-    			billSystem.updateBillingRecord(rec.getUserName(), 0, rec.getWeight());
-    			sysTotalsTrashSystem.updateSystemTotals(rec.getWeight());
+    			billSystem.updateBillingRecord(UserName, 0, weight);
+    			sysTotalsTrashSystem.updateSystemTotals(weight);
 				getDao().createIfNotExists(rec);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-    	}
     	return null;
     }
     

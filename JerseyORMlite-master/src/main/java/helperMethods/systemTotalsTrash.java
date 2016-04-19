@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import com.gallup.gethip.DataSourceManager;
+import com.gallup.gethip.model.system_totals;
 import com.gallup.gethip.model.system_totals_trash;
 import com.j256.ormlite.dao.Dao;
 
@@ -20,7 +21,15 @@ public class systemTotalsTrash {
 	@SuppressWarnings("deprecation")
 	private systemTotalsTrash()
 	{
-		dailyRefresh = new Date();
+		Date date = new Date();
+		system_totals_trash tots = new system_totals_trash(0,0,0,0,0,date,4182016,1);
+		try {
+			getDao().createIfNotExists(tots);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*dailyRefresh = new Date();
 		int day = dailyRefresh.getDate();
 		if(day <= 31)
 		{
@@ -119,6 +128,7 @@ public class systemTotalsTrash {
 		yearlyRefresh = new Date();
 		int year = (yearlyRefresh.getYear() + 1901);
 		yearlyRefresh.setYear(year);
+	*/
 	}
 	
 	public static systemTotalsTrash getInstance()
@@ -135,7 +145,7 @@ public class systemTotalsTrash {
 	@SuppressWarnings("deprecation")
 	public void updateSystemTotals(double weight)
 	{	
-		boolean newEntry = false;
+		/*boolean newEntry = false;
 		Date timeNow = calendar.getTime();
 		int dailyStatus = timeNow.compareTo(dailyRefresh);
 		int weeklyStatus = timeNow.compareTo(weeklyRefresh);
@@ -341,7 +351,32 @@ public class systemTotalsTrash {
 				e.printStackTrace();
 			} 
 		}
+		*/
+		system_totals_trash sysTotal;
+		try {
+			sysTotal = getDao().queryForId("1");
+			double Lifetime = sysTotal.getLifetime();
+			double Month = sysTotal.getMonth();
+			double Week = sysTotal.getWeek();
+			double Year = sysTotal.getYear();
+			double Day = sysTotal.getDay();
+			Day += weight;
+			Lifetime += weight;
+			Week += weight;
+			Year += weight;
+			Month += weight;
+			sysTotal.setDay(Day);
+			sysTotal.setLifetime(Lifetime);
+			sysTotal.setMonth(Month);
+			sysTotal.setWeek(Week);
+			sysTotal.setYear(Year);
+			getDao().update(sysTotal);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+	
 	}
     private Dao<system_totals_trash, String> getDao(){
     	@SuppressWarnings({ "unchecked", "static-access" })

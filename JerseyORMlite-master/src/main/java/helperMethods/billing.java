@@ -15,6 +15,7 @@ public class billing {
 	private static int billingCycleNumber = 1;
 	private static final double weightRate = .25;
 	private static final double recycleCreditRate = .1; 
+	private boolean exists = false;
     private billing()
     {
     	
@@ -51,6 +52,27 @@ public class billing {
     	//if one does not then it creates a new instance
     	try {
 			List<account_balances> account = getDao().queryForEq("userName", userName);
+			if(account.isEmpty())
+			{
+				exists = false;
+				Date date = new Date();
+				Date dateExp = new Date();
+				Date dateEnd = new Date();
+				int month = date.getMonth();
+				if(month == 11)
+				{
+					dateExp.setMonth(0);
+				}
+				else
+					dateExp.setMonth(++month);
+				dateExp.setDate(15);
+				dateEnd.setDate(30);
+				System.out.println(billingCycleNumber);
+				account_balances acc1 = new account_balances(0.0,0.0,date,dateEnd,dateExp,0.0,0.0,0.0,userName,billingCycleNumber);
+				account.add(acc1);
+			}
+			else
+				exists = true;
 			account_balances accountToUse;
 			boolean instantiated = false;
 			for(account_balances acc : account)
@@ -70,7 +92,10 @@ public class billing {
 						accountToUse.settotalPrice(totalBalance);
 						accountToUse.setrecycleWeight(recycleWeight);
 						accountToUse.setrecycleCredit(newBalance);
-						getDao().update(accountToUse);
+						if(exists)
+							getDao().update(accountToUse);
+						else
+							getDao().createIfNotExists(accountToUse);
 					}
 					else
 					{
@@ -82,7 +107,10 @@ public class billing {
 						accountToUse.settotalPrice(totalBalance);
 						accountToUse.settrashWeight(trashWeight);
 						accountToUse.settrashPrice(newBalance);
-						getDao().update(accountToUse);
+						if(exists)
+							getDao().update(accountToUse);
+						else
+							getDao().createIfNotExists(accountToUse);
 					}
 				}
 			}

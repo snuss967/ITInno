@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import com.gallup.gethip.DataSourceManager;
 import com.gallup.gethip.model.system_totals;
+import com.gallup.gethip.model.system_totals_trash;
 import com.j256.ormlite.dao.Dao;
 
 public class systemTotals {
@@ -20,7 +21,15 @@ public class systemTotals {
 	@SuppressWarnings("deprecation")
 	private systemTotals()
 	{
-		//Create a private constructor that when it is first constructed will set the Dates for the dailyRefresh, weeklyRefresh, monthlyRefresh, yearlyRefresh
+		Date date = new Date();
+		system_totals tots = new system_totals(0,0,0,0,0,date,4182016,1);
+		try {
+			getDao().createIfNotExists(tots);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*//Create a private constructor that when it is first constructed will set the Dates for the dailyRefresh, weeklyRefresh, monthlyRefresh, yearlyRefresh
 		//Takes the current date and adds one day, 7 days, 1 month and 1 year
 		//Checks if day is 31 if it is then it will add 1 day
 		dailyRefresh = new Date();
@@ -132,6 +141,7 @@ public class systemTotals {
 			soloInstantiation = new systemTotals();
 		}
 		return soloInstantiation;
+		*/
 			
 	}
 	//greater than 0 if after
@@ -139,7 +149,7 @@ public class systemTotals {
 	@SuppressWarnings({ "unused", "deprecation" })
 	private void updateSystemTotals(double weight)
 	{	
-		boolean newEntry = false;
+		/*boolean newEntry = false;
 		Date timeNow = calendar.getTime();
 		int dailyStatus = timeNow.compareTo(dailyRefresh);
 		int weeklyStatus = timeNow.compareTo(weeklyRefresh);
@@ -342,6 +352,30 @@ public class systemTotals {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
+		}
+		*/
+		system_totals sysTotal;
+		try {
+			sysTotal = getDao().queryForId("1");
+			double Lifetime = sysTotal.getLifetime();
+			double Month = sysTotal.getMonth();
+			double Week = sysTotal.getWeek();
+			double Year = sysTotal.getYear();
+			double Day = sysTotal.getDay();
+			Day += weight;
+			Lifetime += weight;
+			Week += weight;
+			Year += weight;
+			Month += weight;
+			sysTotal.setDay(Day);
+			sysTotal.setLifetime(Lifetime);
+			sysTotal.setMonth(Month);
+			sysTotal.setWeek(Week);
+			sysTotal.setYear(Year);
+			getDao().update(sysTotal);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
